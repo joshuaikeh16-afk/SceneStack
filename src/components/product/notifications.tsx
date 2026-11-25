@@ -1,7 +1,11 @@
 "use client";
 import Link from "next/link";
 import { useState } from "react";
-import { useInfiniteQuery, useQueryClient } from "@tanstack/react-query";
+import {
+  useInfiniteQuery,
+  useQuery,
+  useQueryClient,
+} from "@tanstack/react-query";
 import { Bell, CheckCheck } from "lucide-react";
 import { useProduct, fetchData, unwrap } from "./providers";
 import { readNotifications } from "@/app/actions/profile";
@@ -27,7 +31,25 @@ export function Notifications({ page = false }: { page?: boolean }) {
     enabled: !!bootstrap.userId && bootstrap.availability === "ready",
     refetchInterval: 60000,
   });
-  const unread = query.data?.pages[0]?.unread ?? 0;
+  const invitations = useQuery<
+    { id: string; status: string; expires_at: string }[]
+  >({
+    queryKey: ["control-invitations", bootstrap.userId],
+    queryFn: async () => {
+      const response = await fetch("/api/control/invitations", {
+        cache: "no-store",
+      });
+      if (!response.ok) throw new Error("Could not load team invitations");
+      return response.json();
+    },
+    enabled: !!bootstrap.userId && bootstrap.availability === "ready",
+    refetchInterval: 30000,
+  });
+  const pendingInvitations = (invitations.data ?? []).filter(
+    (item) =>
+      item.status === "pending" && Date.parse(item.expires_at) > (invitations.dataUpdatedAt || 0),
+  ).length;
+  const unread = (query.data?.pages[0]?.unread ?? 0) + pendingInvitations;
   async function mark(ids: string[] = [], all = false) {
     if (!navigator.onLine) return;
     setPending(true);
@@ -42,6 +64,15 @@ export function Notifications({ page = false }: { page?: boolean }) {
   }
   const content = (
     <div className="notification-content">
+      {pendingInvitations > 0 && (
+        <Link
+          href="/activity"
+          className="cc-button primary"
+          onClick={() => setOpen(false)}
+        >
+          Review moderator invitation ({pendingInvitations})
+        </Link>
+      )}
       <div className="notification-toolbar">
         <span>{unread} unread</span>
         <button
