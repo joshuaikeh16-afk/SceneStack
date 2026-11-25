@@ -1,0 +1,9 @@
+.git
+.env*
+.release
+coverage
+tests
+supabase/tests
+test-results
+playwright-report
+*.log

@@ -1,0 +1,3 @@
+`tmdb.svg` is the unmodified blue short logo downloaded from TMDB’s official [logos and attribution page](https://www.themoviedb.org/about/logos-attribution) on 23 November 2026. Its original asset is `blue_short-8e7b30f73a4020692ccca9c88bafe5dcb6f8a62a4c6bc55cd9ba82bb2cd95f6c.svg`. Credits displays the required notice and source links. The trusted worker requires this file.
+
+The operator approved personal/non-commercial use of TMDB and MyAnimeList in this session. This does not grant commercial or offline-copy rights. Review the applicable provider terms before changing the intended use; offline metadata caching remains disabled.

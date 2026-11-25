@@ -1,0 +1,35 @@
+name: Release checks
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run db:check-types
+      - run: npm run build
+      - run: npm run check:secrets
+      - name: Production HTTP smoke test
+        shell: bash
+        run: |
+          npm start -- --hostname 127.0.0.1 --port 3100 > /tmp/scenestack-server.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid"' EXIT
+          for attempt in {1..30}; do
+            if curl --fail --silent http://127.0.0.1:3100/ > /dev/null; then break; fi
+            sleep 1
+          done
+          node tests/routes.smoke.mjs http://127.0.0.1:3100
+          node tests/mobile-routes.smoke.mjs http://127.0.0.1:3100

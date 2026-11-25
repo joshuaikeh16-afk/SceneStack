@@ -1,0 +1,46 @@
+{
+  "projectRef": "zyghuvjvelozjprdfula",
+  "baselineVersion": "202611230024",
+  "lastVersion": "202611250031",
+  "sourceFiles": [
+    {
+      "file": "202611250025_control_center_team.sql",
+      "sha256": "96112eba7c41abe09fd5d114c3e46c5569c77a9ba73028f03505ab34491c2788"
+    },
+    {
+      "file": "202611250026_control_cases_enforcement.sql",
+      "sha256": "08da22cc2799fd928f65be5025c5636601caa291b5f8197809f96a12214fe9c0"
+    },
+    {
+      "file": "202611250027_control_operations.sql",
+      "sha256": "1765b5c34741eb3dad4918de7719acdf8bbed24da5c794a43e2b0087fbb49d19"
+    },
+    {
+      "file": "202611250028_control_catalog_management.sql",
+      "sha256": "e73150446f7abf5e454aa3feb6a97fcbad883b2281e085a94d2776d507cb19dc"
+    },
+    {
+      "file": "202611250029_control_workspaces.sql",
+      "sha256": "1eaf1f43c7d0f34985b20184a5db1bb8f9d726b2b36b643fac0b110c4a87da16"
+    },
+    {
+      "file": "202611250030_control_completion.sql",
+      "sha256": "94a217ec9ad58d0bdbb21d1680f5da96dab831527a8c703949c74412c0b76b13"
+    },
+    {
+      "file": "202611250031_catalog_batch_integrity.sql",
+      "sha256": "5c5c48d1143e41df2f9af0ae8ef53e50cf343b05eac5b0b92707a3e463c8c20a"
+    }
+  ],
+  "schemaFingerprints": {
+    "202611230024": "adb1393ea5a581e00d183b0864f64dce",
+    "202611250025": "1d9c4e2036d0a1e7720d93c2b16646a2",
+    "202611250026": "377558aa34bdf8d11e7fc0034408c3ba",
+    "202611250027": "f95540947c614fdc05d261dcffef5036",
+    "202611250028": "c5e332e124b2bba77809ce983dc8c68e",
+    "202611250029": "c1ed2f3b2b22fd209bf36cf58bd04b2b",
+    "202611250030": "29897fe3a651906d75d5f1fe676b5c7f",
+    "202611250031": "e52b171481aa9f7547d0f5424436b339"
+  },
+  "bundleSha256": "0c77f33b0124575ea454786f13d357c230f767d9922850c9b78e08dcc00a248d"
+}

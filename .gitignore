@@ -1,0 +1,19 @@
+node_modules/
+.next/
+out/
+coverage/
+*.tsbuildinfo
+.env*
+!.env.example
+.vercel/
+.release/
+*.log
+.DS_Store
+playwright-report/
+test-results/
+supabase/.temp/
+supabase/.branches/
+
+# Isolated local browser QA cache
+.next-qa/
+.next-build-qa/

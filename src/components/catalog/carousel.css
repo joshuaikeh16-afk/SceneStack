@@ -1,0 +1,134 @@
+/* Shared poster rail contract. Card width depends only on the viewport, never
+   on the number of loaded items. The scroll element is also the flex track so
+   observers, keyboard focus and scroll anchoring keep their existing root. */
+.horizontal-rail.poster-carousel {
+  --carousel-card-width: clamp(176px, 15vw, 212px);
+  --carousel-gap: 18px;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: flex-start;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  gap: var(--carousel-gap);
+  overflow-x: auto;
+  overflow-y: hidden;
+  contain: inline-size;
+  padding: 6px 1px 16px;
+  scroll-padding-inline: 1px;
+  scroll-margin-top: 112px;
+  scroll-margin-bottom: 112px;
+  scroll-snap-type: x proximity;
+  overscroll-behavior-inline: contain;
+  -webkit-overflow-scrolling: touch;
+}
+.horizontal-rail.poster-carousel > * {
+  flex: 0 0 var(--carousel-card-width);
+  width: var(--carousel-card-width);
+  min-width: var(--carousel-card-width);
+  max-width: var(--carousel-card-width);
+  scroll-snap-align: start;
+}
+.poster-carousel .title-card {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+}
+.poster-carousel .title-poster {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 2 / 3;
+  overflow: hidden;
+}
+.poster-carousel .title-poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.poster-carousel .title-card h3 {
+  width: 100%;
+  min-width: 0;
+  min-height: 2.8em;
+  max-height: 2.8em;
+  margin: 10px 0 4px;
+  font-size: 0.9375rem;
+  line-height: 1.4;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+.poster-carousel .title-card > p,
+.poster-carousel .relationship-label {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.poster-carousel .title-card > p {
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+.detail-related .horizontal-rail.poster-carousel {
+  --carousel-card-width: 160px;
+}
+.feed-empty-sentinel {
+  height: 1px;
+  width: 100%;
+}
+.diagnostic-facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-block: 20px;
+}
+.diagnostic-facts > div {
+  min-width: 0;
+}
+.diagnostic-facts dt {
+  color: var(--color-secondary);
+  font-size: 0.8125rem;
+}
+.diagnostic-facts dd {
+  margin: 4px 0 0;
+  overflow-wrap: anywhere;
+  font-size: 0.875rem;
+}
+.catalog-diagnostics h4 {
+  margin-top: 22px;
+}
+.catalog-diagnostics li {
+  font-size: 0.875rem;
+  color: var(--color-secondary);
+  overflow-wrap: anywhere;
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  .horizontal-rail.poster-carousel {
+    --carousel-card-width: clamp(160px, 22vw, 188px);
+    --carousel-gap: 16px;
+  }
+}
+@media (max-width: 767px) {
+  html {
+    scroll-padding-bottom: calc(108px + env(safe-area-inset-bottom, 0px));
+  }
+  .horizontal-rail.poster-carousel {
+    --carousel-card-width: clamp(120px, 38vw, 160px);
+    --carousel-gap: 14px;
+  }
+  .poster-carousel .title-card h3 {
+    font-size: 0.875rem;
+  }
+  .poster-carousel .title-card > p {
+    font-size: 0.75rem;
+  }
+  .diagnostic-facts {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
